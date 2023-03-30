@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +16,10 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car { BrandId = 1, ColorId = 1, Id = 1, ModelYear = "2023", DailyPrice = 102.10, Description = "Büyük Aile Aracı" },
-                new Car { BrandId = 1, ColorId = 2, Id = 2, ModelYear = "2022", DailyPrice = 105.00, Description = "Küçük Bagaj Hacimli Araç" },
-                new Car { BrandId = 1, ColorId = 3, Id = 3, ModelYear = "2021", DailyPrice = 110.50, Description = "Siyah Renkli Konforlu Aracı" },
-                new Car { BrandId = 2, ColorId = 3, Id = 4, ModelYear = "2023", DailyPrice = 198.10, Description = "Lüks Vip Aracı" }
+                new Car { BrandId = 1, ColorId = 1, Id = 1, ModelYear = "2023", DailyPrice = 102, Description = "Büyük Aile Aracı" },
+                new Car { BrandId = 1, ColorId = 2, Id = 2, ModelYear = "2022", DailyPrice = 105, Description = "Küçük Bagaj Hacimli Araç" },
+                new Car { BrandId = 1, ColorId = 3, Id = 3, ModelYear = "2021", DailyPrice = 110, Description = "Siyah Renkli Konforlu Aracı" },
+                new Car { BrandId = 2, ColorId = 3, Id = 4, ModelYear = "2023", DailyPrice = 198, Description = "Lüks Vip Aracı" }
             };
         }
 
@@ -34,15 +35,22 @@ namespace DataAccess.Concrete.InMemory
             _cars.Remove(carToDelete);
         }
 
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Car> GetAll()
         {
             return _cars;
         }
 
-        public List<Car> GetByID(int id)
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            return _cars.Where(c=>c.Id==id).ToList();
+            throw new NotImplementedException();
         }
+
+        
 
         public void Update(Car car)
         {

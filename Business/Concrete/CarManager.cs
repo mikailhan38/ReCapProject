@@ -19,21 +19,34 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
-        {
-            return _carDal.GetAll();
-        }
-        public List<Car> GetByID(int id)
-        {
-            return _carDal.GetByID(id);
-        }
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (car.CarName.Length >= 2)
+            {
+                _carDal.Add(car);
+            }
+            else 
+            {
+                Console.WriteLine("Araç Adı 2 karakterden kısa ve günlük ücret 0'dan küçük olamaz");
+            }
         }
         public void Delete(Car car)
         {
            _carDal.Delete(car);
+        }
+        public List<Car> GetAll()
+        {
+            return _carDal.GetAll();
+        }
+
+        public List<Car> GetCarsByBrandId(int Id)
+        {
+            return _carDal.GetAll(c=>c.BrandId==Id);
+        }
+
+        public List<Car> GetCarsByColorId(int Id)
+        {
+            return _carDal.GetAll(c=> c.ColorId==Id);
         }
     }
 }
