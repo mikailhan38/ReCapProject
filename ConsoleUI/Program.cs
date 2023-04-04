@@ -9,6 +9,11 @@ internal class Program
     private static void Main(string[] args)
     {
         CarManager carManager = new CarManager(new EfCarDal());
+        BrandManager brandManager = new BrandManager(new EfBrandDal());
+        Brand brand1 = new Brand();
+        brand1.BrandName = "Fiat";
+        brandManager.Add(brand1);
+        Console.WriteLine("---- Marka Eklendi ----");
         Car car1 = new Car();
         car1.BrandId = 1;
         car1.ColorId = 2;
@@ -18,10 +23,12 @@ internal class Program
         car1.ModelYear = "2020";
         carManager.Add(car1);
         Console.WriteLine("Araç Eklendi\n ----------------------");
+        
 
-        foreach (var car in carManager.GetAll())
+
+        foreach (var car in carManager.GetCarDetails())
         {
-            Console.WriteLine(car.ModelYear + " Model :" + car.CarName);
+            Console.WriteLine(car.CarName + "/ Marka :" + car.BrandName + "/ Renk :" + car.ColorName + "/ Günlük Fiyatı :"+ car.DailyPrice);
         }
         Console.WriteLine("-----------------------------");
         
