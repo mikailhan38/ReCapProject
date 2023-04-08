@@ -26,7 +26,7 @@ internal class Program
         
 
 
-        foreach (var car in carManager.GetCarDetails())
+        foreach (var car in carManager.GetCarDetails().Data)
         {
             Console.WriteLine(car.CarName + "/ Marka :" + car.BrandName + "/ Renk :" + car.ColorName + "/ Günlük Fiyatı :"+ car.DailyPrice);
         }
