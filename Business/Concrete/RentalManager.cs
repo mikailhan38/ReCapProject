@@ -3,6 +3,7 @@ using Business.Constans;
 using Core.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>();
+            return new SuccessDataResult<List<Rental>>(_rendalDal.GetAll());
         }
 
         public IResult Remove(Rental rental)

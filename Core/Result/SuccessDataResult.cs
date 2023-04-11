@@ -23,9 +23,6 @@ namespace Core.Result
 
         }
 
-        public SuccessDataResult() : base(default, true)
-        {
-
-        }
+        
     }
 }
