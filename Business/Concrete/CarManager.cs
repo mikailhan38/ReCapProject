@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constans;
-using Core.Result;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -47,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetById(int Id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.Id==Id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.CarId==Id));
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarDetails()

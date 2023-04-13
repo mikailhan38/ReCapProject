@@ -16,7 +16,17 @@ namespace WebAPI.Controllers
             _carService = carService;
         }
         [HttpGet("getall")]
-        public IActionResult GetAll() 
+        public IActionResult GetAll()
+        {
+            var result=_carService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getcardetails")]
+        public IActionResult GetCarDetails() 
         {
             var result=_carService.GetCarDetails();
             if (result.Success)
@@ -28,7 +38,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _carService.GetCarDetails();
+            var result = _carService.GetById(id);
             if (result.Success) 
             {
                 return Ok(result);
@@ -50,6 +60,35 @@ namespace WebAPI.Controllers
         {
             var result = _carService.Add(car);
             if (result.Success) 
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        //[HttpPost("delete")]
+        //public IActionResult Delete(Car car)
+        //{
+        //    var result = _carService.Delete(car);
+        //    if(result.Success) { return Ok(result); }
+        //    return BadRequest(result);
+        //}
+        [HttpPost("delete")]
+        public IActionResult Delete(int id,Car car) 
+        {
+            car.CarId = id;
+            var result = _carService.Delete(car);
+            if(result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(int id, Car car)
+        {
+            car.CarId = id;
+            var result = _carService.Update(car);
+            if (result.Success)
             {
                 return Ok(result);
             }
